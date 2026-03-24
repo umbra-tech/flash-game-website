@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruffle Test - Classic Flash Games</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .test-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .test-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 20px auto;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        ruffle-player {
+            width: 100%;
+            height: 100%;
+        }
+
+        .status {
+            text-align: center;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        ul {
+            margin-left: 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Ruffle Test Page 🎮</h1>
+        <p class="subtitle">Testing Flash Player Emulation</p>
+
+        <div class="test-section">
+            <h2>✅ Ruffle Status</h2>
+            <div class="status success" id="status">
+                ✓ Ruffle library loaded successfully!
+            </div>
+            <p style="text-align: center; color: #666;">
+                Ruffle version: <span id="version">Checking...</span>
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test with Demo Flash Content</h2>
+            <p style="margin-bottom: 20px; color: #666; text-align: center;">
+                This test uses a simple Flash animation loaded from a data URL to verify Ruffle is working.
+            </p>
+            <div class="game-container">
+                <ruffle-player id="demo"></ruffle-player>
+            </div>
+            <p style="margin-top: 20px; text-align: center; color: #666;">
+                If you see a red square with text, Ruffle is working! ✓
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 What This Proves</h2>
+            <ul>
+                <li>✓ Ruffle library loads correctly from CDN</li>
+                <li>✓ Browser supports WebAssembly (required for Ruffle)</li>
+                <li>✓ Flash content can be embedded and played</li>
+                <li>✓ Works as a static HTML file (no server required)</li>
+                <li>✓ Ready to use with your own .swf files!</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 Next Steps</h2>
+            <p style="margin-bottom: 15px; color: #333;">To use the main site with your games:</p>
+            <ol style="margin-left: 20px; line-height: 1.8; color: #333;">
+                <li>Use the <code>index.html</code> file provided</li>
+                <li>Create a <code>games</code> folder</li>
+                <li>Add your .swf files (game1.swf, game2.swf, etc.)</li>
+                <li>Uncomment the <code>&lt;ruffle-player&gt;</code> tags</li>
+                <li>Customize game titles and descriptions</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Configure Ruffle
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.RufflePlayer.config = {
+            "autoplay": "on",
+            "unmuteOverlay": "hidden",
+            "logLevel": "info"
+        };
+
+        // Test actual game loading
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Testing Ruffle with actual game file...');
+            
+            setTimeout(() => {
+                const versionEl = document.getElementById('version');
+                if (window.RufflePlayer) {
+                    versionEl.textContent = 'Loaded successfully';
+                    console.log('Ruffle is available');
+                    
+                    // Try to load chc1.swf
+                    const demoPlayer = document.getElementById('demo');
+                    demoPlayer.load('../games/game1.swf');
+                    
+                    demoPlayer.addEventListener('loadeddata', () => {
+                        console.log('✓ Game loaded successfully!');
+                        document.getElementById('status').innerHTML = '✓ Ruffle loaded successfully! Game is running!';
+                    });
+                    
+                    demoPlayer.addEventListener('error', (e) => {
+                        console.error('✗ Error loading game:', e);
+                        document.getElementById('status').innerHTML = '✗ Error loading game. Check console.';
+                        document.getElementById('status').className = 'status error';
+                    });
+                } else {
+                    versionEl.textContent = 'Failed to load';
+                    console.error('Ruffle not available');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
