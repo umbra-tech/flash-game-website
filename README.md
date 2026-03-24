@@ -2,7 +2,7 @@
 
 A simple static website to play old Flash (.swf) games using Ruffle, a Flash Player emulator.
 
-## ?? Features
+##  Features
 
 - Play 4 classic Flash games in modern browsers
 - No Flash Player required - uses Ruffle emulator
@@ -11,21 +11,21 @@ A simple static website to play old Flash (.swf) games using Ruffle, a Flash Pla
 - Responsive design
 - Beautiful gradient UI
 
-## ?? File Structure
+##  File Structure
 
 ```
 Flash Website/
 +-- index.html          # Main website with 4 game slots
 +-- test-demo.html      # Test page to verify Ruffle works
 +-- games/              # Create this folder for your .swf files
-�   +-- game1.swf
-�   +-- game2.swf
-�   +-- game3.swf
-�   +-- game4.swf
+   +-- game1.swf
+   +-- game2.swf
+   +-- game3.swf
+   +-- game4.swf
 +-- README.md          # This file
 ```
 
-## ?? Quick Start
+##  Quick Start
 
 ### Step 1: Test Ruffle
 1. Open `test-demo.html` in your browser to verify Ruffle is working.  Adjust line 184 to point to a game file
@@ -64,7 +64,9 @@ Flash Website/
 ### Step 4: Open in Browser
 Simply open `index.html` in any modern browser (Chrome, Firefox, Edge, Safari)
 
-## ?? Hosting Options
+</br>
+
+##  Hosting Options
 
 ### Local Use
 - Just open `index.html` in your browser
@@ -77,7 +79,7 @@ Upload all files to any web host:
 - Vercel
 - Any traditional web hosting
 
-## ?? Customization
+##  Customization
 
 ### Change Game Titles
 Edit the `<h2 class="game-title">` tags in `index.html`
@@ -93,14 +95,14 @@ Modify the CSS in the `<style>` section:
 ### Add More Games
 Copy and paste a `.game-card` div and update the game number
 
-## ?? Where to Find .swf Games
+##  Where to Find .swf Games
 
 - Archive.org (Internet Archive)
 - Flashpoint Archive
 - Your personal collection
 - **Note:** Only use games you have permission to distribute
 
-## ? Browser Compatibility
+##  Browser Compatibility
 
 Ruffle works on:
 - ? Chrome/Edge (latest)
@@ -110,7 +112,7 @@ Ruffle works on:
 
 Requires WebAssembly support (all modern browsers have this)
 
-## ?? Troubleshooting
+##  Troubleshooting
 
 **Game doesn't load:**
 - Check that the .swf file exists in the `games` folder
@@ -126,13 +128,13 @@ Requires WebAssembly support (all modern browsers have this)
 - Some complex Flash games may not be fully compatible with Ruffle yet
 - Check [Ruffle Compatibility](https://ruffle.rs/compatibility) for known issues
 
-## ?? Resources
+##  Resources
 
 - [Ruffle Official Site](https://ruffle.rs/)
 - [Ruffle GitHub](https://github.com/ruffle-rs/ruffle)
 - [Flashpoint Archive](https://bluemaxima.org/flashpoint/)
 
-## ?? License
+##  License
 
 This template is free to use. Ruffle is open source (MIT/Apache-2.0).
 
